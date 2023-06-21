@@ -20,6 +20,7 @@ try:
 except ImportError:
     pyBigWig = None
 
+from ._bedfile import to_bed
 from ..core.arrops import argnatsort
 from ..core.stringops import parse_region
 from .schemas import BAM_FIELDS, SCHEMAS
@@ -35,6 +36,7 @@ __all__ = [
     "to_bigwig",
     "read_bigbed",
     "to_bigbed",
+    "to_bed",
 ]
 
 
