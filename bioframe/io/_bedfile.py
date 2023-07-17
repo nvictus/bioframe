@@ -161,8 +161,8 @@ def check_chrom(df: pd.DataFrame) -> dict[bool]:
     is_len_ok = ((lengths >= 1) & (lengths <= 255)).all()
 
     return {
-        "chrom.is_alnum": is_alnum,
-        "chrom.is_len_ok": is_len_ok,
+        "chrom:is_alnum": is_alnum,
+        "chrom:is_len_ok": is_len_ok,
     }
 
 
@@ -186,15 +186,15 @@ def check_start(
     is_le_64 = (df["start"] <= UINT64_MAX).all()
 
     out = {
-        "start.is_nonneg": is_nonneg,
-        "start.is_le_64": is_le_64,
+        "start:is_nonneg": is_nonneg,
+        "start:is_le_64": is_le_64,
     }
 
     # Check that the start column contains only integers < the chromosome size
     if chromsizes is not None:
         chromsizes = pd.Series(chromsizes)
         is_lt_chrom = (df["end"] < chromsizes[df["chrom"]]).all()
-        out["start.is_lt_chrom"] = is_lt_chrom
+        out["start:is_lt_chrom"] = is_lt_chrom
 
     return out
 
@@ -222,16 +222,16 @@ def check_end(
     is_end_ge_start = (df["end"] >= df["start"]).all()
 
     out = {
-        "end.is_nonneg": is_nonneg,
-        "end.is_le_64": is_le_64,
-        "end.is_end_ge_start": is_end_ge_start,
+        "end:is_nonneg": is_nonneg,
+        "end:is_le_64": is_le_64,
+        "end:is_end_ge_start": is_end_ge_start,
     }
 
     # Check that the end column contains only integers <= the chromosome size
     if chromsizes is not None:
         chromsizes = pd.Series(chromsizes)
         is_le_chrom = (df["end"] <= chromsizes[df["chrom"]]).all()
-        out["end.is_le_chrom"] = is_le_chrom
+        out["end:is_le_chrom"] = is_le_chrom
 
     return out
 
@@ -250,7 +250,7 @@ def check_name(df: pd.DataFrame) -> dict[bool]:
     is_len_ok = ((lengths >= 1) & (lengths <= 255)).all()
 
     return {
-        "name.is_len_ok": is_len_ok,
+        "name:is_len_ok": is_len_ok,
     }
 
 
@@ -269,7 +269,7 @@ def check_score(df: pd.DataFrame) -> dict[bool]:
     is_in_range = ((df["score"] >= 0) & (df["score"] <= 1000)).all()
 
     return {
-        "score.is_in_range": is_in_range,
+        "score:is_in_range": is_in_range,
     }
 
 
@@ -285,7 +285,7 @@ def check_strand(df: pd.DataFrame) -> dict[bool]:
     is_pattern_ok = df["strand"].str.match(r"^[+\-.?]$").all()
 
     return {
-        "strand.is_pattern_ok": is_pattern_ok,
+        "strand:is_pattern_ok": is_pattern_ok,
     }
 
 
@@ -302,8 +302,8 @@ def check_thickStart(df: pd.DataFrame) -> dict[bool]:
     is_le_end = (df["thickStart"] <= df["end"]).all()
 
     return {
-        "thickStart.is_ge_start": is_ge_start,
-        "thickStart.is_le_end": is_le_end,
+        "thickStart:is_ge_start": is_ge_start,
+        "thickStart:is_le_end": is_le_end,
     }
 
 
@@ -321,8 +321,8 @@ def check_thickEnd(df: pd.DataFrame) -> dict[bool]:
     is_le_end = (df["thickEnd"] <= df["end"]).all()
 
     return {
-        "thickEnd.is_ge_start": is_ge_start,
-        "thickEnd.is_le_end": is_le_end,
+        "thickEnd:is_ge_start": is_ge_start,
+        "thickEnd:is_le_end": is_le_end,
     }
 
 
@@ -350,8 +350,8 @@ def check_itemRgb(df: pd.DataFrame) -> dict[bool]:
     ).all()
 
     return {
-        "itemRgb.is_pattern_ok": is_pattern_ok,
-        "itemRgb.is_in_range": is_in_range,
+        "itemRgb:is_pattern_ok": is_pattern_ok,
+        "itemRgb:is_in_range": is_in_range,
     }
 
 
@@ -368,7 +368,7 @@ def check_blockCount(df: pd.DataFrame) -> dict[bool]:
     is_gt_0 = (df["blockCount"] > 0).all()
 
     return {
-        "blockCount.is_gt_0": is_gt_0,
+        "blockCount:is_gt_0": is_gt_0,
     }
 
 
@@ -392,8 +392,8 @@ def check_blockSizes(df: pd.DataFrame) -> dict[bool]:
     is_n_blocks_ok = (n_blocks == df["blockCount"]).all()
 
     return {
-        "blockSizes.is_pattern_ok": is_pattern_ok,
-        "blockSizes.is_n_blocks_ok": is_n_blocks_ok,
+        "blockSizes:is_pattern_ok": is_pattern_ok,
+        "blockSizes:is_n_blocks_ok": is_n_blocks_ok,
     }
 
 
@@ -481,13 +481,13 @@ def check_blockStarts(df: pd.DataFrame) -> dict[bool]:
                 break
 
     return {
-        "blockStarts.is_pattern_ok": is_pattern_ok,
-        "blockStarts.is_n_blocks_ok": is_n_blocks_ok,
-        "blockStarts.is_in_range": is_in_range,
-        "blockStarts.is_first_block_start": is_first_block_start,
-        "blockStarts.is_last_block_end": is_last_block_end,
-        "blockStarts.is_sorted": is_sorted,
-        "blockStarts.is_no_overlap": is_no_overlap,
+        "blockStarts:is_pattern_ok": is_pattern_ok,
+        "blockStarts:is_n_blocks_ok": is_n_blocks_ok,
+        "blockStarts:is_in_range": is_in_range,
+        "blockStarts:is_first_block_start": is_first_block_start,
+        "blockStarts:is_last_block_end": is_last_block_end,
+        "blockStarts:is_sorted": is_sorted,
+        "blockStarts:is_no_overlap": is_no_overlap,
     }
 
 
@@ -598,8 +598,8 @@ def check_is_sorted(df: pd.DataFrame) -> dict[bool]:
             break
 
     return {
-        "sorted.is_chrom_consecutive": is_chrom_consecutive,
-        "sorted.is_sorted_start_end": is_sorted_start_end,
+        "sorted:is_chrom_consecutive": is_chrom_consecutive,
+        "sorted:is_sorted_start_end": is_sorted_start_end,
     }
 
 
