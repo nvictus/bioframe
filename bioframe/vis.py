@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 from matplotlib.colors import to_rgb
 
-from .core import arrops
+from .ops import _arrops
 
 DEFAULT_FACECOLOR = "skyblue"
 DEFAULT_EDGECOLOR = "dimgray"
@@ -122,7 +122,7 @@ def plot_intervals_arr(
         plt.figure(figsize=figsize)
 
     if levels is None:
-        levels = arrops.stack_intervals(starts, ends)
+        levels = _arrops.stack_intervals(starts, ends)
     else:
         levels = np.asarray(levels)
 

@@ -1,6 +1,5 @@
-from .assembly import assemblies_available, assembly_info
-from .bed import to_bed
-from .fileops import (
+from ._bed import to_bed
+from ._fileops import (
     load_fasta,
     read_alignments,
     read_bam,
@@ -13,12 +12,9 @@ from .fileops import (
     to_bigbed,
     to_bigwig,
 )
-from .resources import UCSCClient, fetch_centromeres, fetch_chromsizes
-from .schemas import SCHEMAS
+from ._schemas import SCHEMAS
 
 __all__ = [
-    "assemblies_available",
-    "assembly_info",
     "read_table",
     "read_chromsizes",
     "read_tabix",
@@ -31,8 +27,5 @@ __all__ = [
     "to_bigwig",
     "read_bigbed",
     "to_bigbed",
-    "UCSCClient",
-    "fetch_centromeres",
-    "fetch_chromsizes",
     "SCHEMAS",
 ]

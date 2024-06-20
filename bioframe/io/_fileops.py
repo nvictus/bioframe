@@ -21,9 +21,9 @@ try:
 except ImportError:
     pyBigWig = None
 
-from ..core.arrops import argnatsort
 from ..core.stringops import parse_region
-from .schemas import BAM_FIELDS, SCHEMAS
+from ..ops._arrops import argnatsort
+from ._schemas import BAM_FIELDS, SCHEMAS
 
 __all__ = [
     "read_table",

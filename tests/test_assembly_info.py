@@ -1,7 +1,11 @@
 import pandas as pd
 import pytest
 
-from bioframe.io.assembly import GenomeAssembly, assemblies_available, assembly_info
+from bioframe.resources._assembly import (
+    GenomeAssembly,
+    assemblies_available,
+    assembly_info,
+)
 
 
 def test_assemblies_available():

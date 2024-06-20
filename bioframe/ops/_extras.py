@@ -1,19 +1,8 @@
 import numpy as np
 import pandas as pd
 
-from . import ops
-from .core.specs import _get_default_colnames, _verify_columns
-
-__all__ = [
-    "make_chromarms",
-    "binnify",
-    "digest",
-    "frac_mapped",
-    "frac_gc",
-    "seq_gc",
-    "frac_gene_coverage",
-    "pair_by_distance",
-]
+from ..core.specs import _get_default_colnames, _verify_columns
+from . import _ops
 
 
 def make_chromarms(
@@ -100,7 +89,7 @@ def make_chromarms(
     df_mids["start"] = df_mids[sk2]
     df_mids["end"] = df_mids[sk2]
 
-    df_chromarms = ops.subtract(
+    df_chromarms = _ops.subtract(
         df_chroms,
         df_mids,
         cols1=(ck1, sk1, ek1),
@@ -370,15 +359,15 @@ def frac_gene_coverage(df, ucsc_mrna):
 
     """
     if isinstance(ucsc_mrna, str):
-        from .io.resources import UCSCClient
+        from ..resources.resources import UCSCClient
 
         mrna = UCSCClient(ucsc_mrna).fetch_mrna()
     else:
         mrna = ucsc_mrna
 
     mrna = mrna.rename(columns={"tName": "chrom", "tStart": "start", "tEnd": "end"})
-    df_gene_coverage = ops.coverage(df, mrna)
-    df_gene_coverage = ops.count_overlaps(df_gene_coverage, mrna)
+    df_gene_coverage = _ops.coverage(df, mrna)
+    df_gene_coverage = _ops.count_overlaps(df_gene_coverage, mrna)
 
     return df_gene_coverage
 
@@ -497,7 +486,7 @@ def pair_by_distance(
 
     # Intersect right-handed probes (from intervals on the left)
     # with left-handed probes (from intervals on the right)
-    idxs = ops.overlap(
+    idxs = _ops.overlap(
         right_probe,
         left_probe,
         suffixes=suffixes,

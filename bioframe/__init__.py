@@ -9,7 +9,6 @@ except PackageNotFoundError:
     __version__ = "unknown"
 
 __all__ = [
-    "arrops",
     "from_any",
     "from_dict",
     "from_list",
@@ -78,7 +77,6 @@ __all__ = [
 ]
 
 from .core import (
-    arrops,
     from_any,
     from_dict,
     from_list,
@@ -100,23 +98,8 @@ from .core import (
     to_ucsc_string,
     update_default_colnames,
 )
-from .extras import (
-    binnify,
-    digest,
-    frac_gc,
-    frac_gene_coverage,
-    frac_mapped,
-    make_chromarms,
-    pair_by_distance,
-    seq_gc,
-)
 from .io import (
     SCHEMAS,
-    UCSCClient,
-    assemblies_available,
-    assembly_info,
-    fetch_centromeres,
-    fetch_chromsizes,
     load_fasta,
     read_alignments,
     read_bam,
@@ -132,22 +115,37 @@ from .io import (
 )
 from .ops import (
     assign_view,
+    binnify,
     closest,
     cluster,
     complement,
     count_overlaps,
     coverage,
+    digest,
     expand,
+    frac_gc,
+    frac_gene_coverage,
+    frac_mapped,
+    make_chromarms,
     merge,
     overlap,
+    pair_by_distance,
     select,
     select_indices,
     select_labels,
     select_mask,
+    seq_gc,
     setdiff,
     sort_bedframe,
     subtract,
     trim,
+)
+from .resources import (
+    UCSCClient,
+    assemblies_available,
+    assembly_info,
+    fetch_centromeres,
+    fetch_chromsizes,
 )
 from .vis import plot_intervals, to_ucsc_colorstring
 

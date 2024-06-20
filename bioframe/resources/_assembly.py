@@ -20,7 +20,7 @@ from bioframe import make_viewframe
 
 __all__ = ["assemblies_available", "assembly_info"]
 
-ASSEMBLY_METADATA_ROOT = resource_path("bioframe.io") / "data"
+ASSEMBLY_METADATA_ROOT = resource_path("bioframe.resources") / "data"
 
 
 @dataclass

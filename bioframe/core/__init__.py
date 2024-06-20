@@ -1,4 +1,3 @@
-from . import arrops
 from .checks import (
     is_bedframe,
     is_cataloged,
@@ -26,7 +25,6 @@ from .stringops import (
 )
 
 __all__ = [
-    "arrops",
     "is_bedframe",
     "is_cataloged",
     "is_contained",

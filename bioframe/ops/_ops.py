@@ -1,29 +1,10 @@
 import numpy as np
 import pandas as pd
 
-from .core import arrops, checks, construction
-from .core.specs import _get_default_colnames, _verify_columns
-from .core.stringops import parse_region
-
-__all__ = [
-    "select",
-    "select_mask",
-    "select_indices",
-    "select_labels",
-    "expand",
-    "overlap",
-    "cluster",
-    "merge",
-    "coverage",
-    "closest",
-    "subtract",
-    "setdiff",
-    "count_overlaps",
-    "trim",
-    "complement",
-    "sort_bedframe",
-    "assign_view",
-]
+from ..core import checks, construction
+from ..core.specs import _get_default_colnames, _verify_columns
+from ..core.stringops import parse_region
+from . import _arrops
 
 
 def select_mask(df, region, cols=None):
@@ -308,7 +289,7 @@ def _overlap_intidxs(df1, df2, how="left", cols1=None, cols2=None, on=None):
 
         if left_nonempty and right_nonempty:
             # paired
-            pi, pj = arrops.overlap_intervals(
+            pi, pj = _arrops.overlap_intervals(
                 starts1[df1_inds],
                 ends1[df1_inds],
                 starts2[df2_inds],
@@ -644,7 +625,7 @@ def cluster(
             cluster_ids_group,
             cluster_starts_group,
             cluster_ends_group,
-        ) = arrops.merge_intervals(
+        ) = _arrops.merge_intervals(
             df_group[sk].values.astype(np.int64),
             df_group[ek].values.astype(np.int64),
             min_dist=min_dist,
@@ -784,7 +765,7 @@ def merge(df, min_dist=0, cols=None, on=None):
             cluster_ids_group,
             cluster_starts_group,
             cluster_ends_group,
-        ) = arrops.merge_intervals(
+        ) = _arrops.merge_intervals(
             df_group[sk].values.astype(np.int64),
             df_group[ek].values.astype(np.int64),
             min_dist=min_dist,
@@ -1013,7 +994,7 @@ def _closest_intidxs(
                 along = np.ones(len(df1_inds), dtype=np.bool_)
 
             # paired intervals
-            pi, pj = arrops.closest_intervals(
+            pi, pj = _arrops.closest_intervals(
                 starts1[df1_inds],
                 ends1[df1_inds],
                 None if self_closest else starts2[df2_inds],
@@ -1670,7 +1651,7 @@ def complement(df, view_df=None, view_name_col="name", cols=None, cols_view=None
         (
             complement_starts_group,
             complement_ends_group,
-        ) = arrops.complement_intervals(
+        ) = _arrops.complement_intervals(
             df_group[sk].values.astype(np.int64),
             df_group[ek].values.astype(np.int64),
             bounds=(region_start, region_end),

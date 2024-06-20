@@ -6,9 +6,8 @@ from urllib.parse import urljoin
 import numpy as np
 import pandas as pd
 
-from .assembly import assembly_info
-from .fileops import read_chromsizes, read_table
-from .schemas import SCHEMAS
+from ..io import SCHEMAS, read_chromsizes, read_table
+from ._assembly import assembly_info
 
 __all__ = [
     "fetch_chromsizes",
