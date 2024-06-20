@@ -3,8 +3,6 @@
 File I/O
 ========
 
-.. automodule:: bioframe.io.fileops
+.. automodule:: bioframe.io
    :autosummary:
    :members:
-
-.. autofunction:: bioframe.io.bed.to_bed

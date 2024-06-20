@@ -1,6 +1,6 @@
 Additional tools
 ================
 
-.. automodule:: bioframe.extras
+.. automodule:: bioframe.ops._extras
    :autosummary:
    :members:

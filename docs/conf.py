@@ -17,6 +17,7 @@ from importlib.metadata import metadata
 #       If this is the case, reinstall it to refresh the metadata
 info = metadata("bioframe")
 project_name = info["Name"]
+project = info["Name"]
 author = "Open2C"
 copyright = f"{datetime.now():%Y}, {author}."
 version = info["Version"]

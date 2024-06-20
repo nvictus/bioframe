@@ -50,11 +50,11 @@ of the chromosomes in the `seqinfo` file.
 The manifest and companion files are stored in the ``bioframe/io/data`` directory.
 New assemblies can be requested by opening an issue on GitHub or by submitting a pull request.
 
-.. automodule:: bioframe.io.assembly
+.. automodule:: bioframe.resources._assembly
    :autosummary:
    :members:
 
-.. autoclass:: bioframe.io.assembly.GenomeAssembly
+.. autoclass:: bioframe.resources._assembly.GenomeAssembly
    :members:
    :undoc-members:
 
@@ -64,6 +64,6 @@ Remote resources
 These functions now default to using the local data store, but can be used to obtain chromsizes or
 centromere positions from UCSC by setting ``provider="ucsc"``.
 
-.. automodule:: bioframe.io.resources
+.. automodule:: bioframe.resources._client
    :autosummary:
    :members:

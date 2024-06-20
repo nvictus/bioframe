@@ -3,6 +3,6 @@
 Interval operations
 ===================
 
-.. automodule:: bioframe.ops
+.. automodule:: bioframe.ops._ops
    :autosummary:
    :members:
